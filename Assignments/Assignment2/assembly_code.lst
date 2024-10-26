@@ -1,0 +1,152 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             Mydata, DATA
+    2 00000000 00000005 
+                       x       EQU              5
+    3 00000000 00000003 
+                       y       EQU              3
+    4 00000000         
+    5 00000000                 AREA             Mycode,CODE
+    6 00000000                 ENTRY
+    7 00000000                 EXPORT           __main
+    8 00000000         
+    9 00000000         __main
+   10 00000000         
+   11 00000000 F04F 0005       LDR              r0,= x
+   12 00000004 F04F 0103       LDR              r1,= y
+   13 00000008         
+   14 00000008         
+   15 00000008 4288            CMP              r0, r1
+   16 0000000A         
+   17 0000000A         ; Set flags based on the comparison
+   18 0000000A D001            BEQ              equal       ; If R0 == R1, bran
+                                                            ch to 'equal'
+   19 0000000C DC03            BGT              greater     ; If R0 > R1, branc
+                                                            h to 'greater'
+   20 0000000E DB05            BLT              less        ; If R0 < R1, branc
+                                                            h to 'less'
+   21 00000010         
+   22 00000010         equal
+   23 00000010         ; Code for when R0 == R1
+   24 00000010         
+   25 00000010 F04F 0201       MOV              r2, #1      ; Set r2 to 1 to in
+                                                            dicate equality
+   26 00000014 E004            B                stop        ; Jump to stop
+   27 00000016         
+   28 00000016         greater
+   29 00000016         ; Code for when R0 > R1
+   30 00000016 F04F 0202       MOV              r2, #2      ; Set r2 to 2 to in
+                                                            dicate R0 is greate
+                                                            r
+   31 0000001A E001            B                stop        ; Jump to stop
+   32 0000001C         
+   33 0000001C         less
+   34 0000001C         ; Code for when R0 < R1
+   35 0000001C F04F 0203       MOV              r2, #3      ; Set rD2 to 3 to i
+                                                            ndicate R0 is less
+   36 00000020         stop
+   37 00000020         
+   38 00000020                 END
+Command Line: --debug --xref --cpu=Cortex-M4 --apcs=interwork --depend=.\assemb
+ly_code.d -o.\assembly_code.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Includ
+e -IC:\Keil\ARM\Inc\Luminary --predefine="__EVAL SETA 1" --predefine="__MICROLI
+B SETA 1" --list=.\assembly_code.lst assembly_code.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Mydata 00000000
+
+Symbol: Mydata
+   Definitions
+      At line 1 in file assembly_code.s
+   Uses
+      None
+Comment: Mydata unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Mycode 00000000
+
+Symbol: Mycode
+   Definitions
+      At line 5 in file assembly_code.s
+   Uses
+      None
+Comment: Mycode unused
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 9 in file assembly_code.s
+   Uses
+      At line 7 in file assembly_code.s
+Comment: __main used once
+equal 00000010
+
+Symbol: equal
+   Definitions
+      At line 22 in file assembly_code.s
+   Uses
+      At line 18 in file assembly_code.s
+Comment: equal used once
+greater 00000016
+
+Symbol: greater
+   Definitions
+      At line 28 in file assembly_code.s
+   Uses
+      At line 19 in file assembly_code.s
+Comment: greater used once
+less 0000001C
+
+Symbol: less
+   Definitions
+      At line 33 in file assembly_code.s
+   Uses
+      At line 20 in file assembly_code.s
+Comment: less used once
+stop 00000020
+
+Symbol: stop
+   Definitions
+      At line 36 in file assembly_code.s
+   Uses
+      At line 26 in file assembly_code.s
+      At line 31 in file assembly_code.s
+
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+x 00000005
+
+Symbol: x
+   Definitions
+      At line 2 in file assembly_code.s
+   Uses
+      At line 11 in file assembly_code.s
+Comment: x used once
+y 00000003
+
+Symbol: y
+   Definitions
+      At line 3 in file assembly_code.s
+   Uses
+      At line 12 in file assembly_code.s
+Comment: y used once
+2 symbols
+341 symbols in table
